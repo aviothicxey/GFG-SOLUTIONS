@@ -1,19 +1,18 @@
 class Solution {
     public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
         // code here
-        boolean vis[] = new boolean[adj.size()];
-        ArrayList<Integer>dfs = new ArrayList<>();
-        vis[0] = true;
-        dfs(vis , adj , dfs , 0);
-        return dfs;
-        
+        boolean[] vis = new boolean[adj.size()];
+        ArrayList<Integer> ans = new ArrayList<>();
+        dfss(vis , adj , 0 , ans);
+        return ans;
     }
-    public void dfs(boolean[] vis , ArrayList<ArrayList<Integer>> adj , ArrayList<Integer> dfs , int node){
+    public void dfss(boolean[]vis , ArrayList<ArrayList<Integer>> adj ,
+    int node, ArrayList<Integer> ans){
         vis[node] = true;
-        dfs.add(node);
-        for(int i : adj.get(node)){
-            if(vis[i] == false){
-                dfs(vis , adj , dfs , i);
+        ans.add(node);
+        for(int neigh : adj.get(node)){
+            if(vis[neigh] == false){
+                dfss(vis, adj , neigh , ans);
             }
         }
     }
