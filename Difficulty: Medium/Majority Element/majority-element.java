@@ -1,29 +1,18 @@
 class Solution {
     int majorityElement(int arr[]) {
         // code here
-        int candidate = 0 ;
-        int vote = 0;
-        
-        for(int x : arr ){
-            if(vote == 0){
-                 candidate = x;
-            }
-            if(x == candidate){
-                vote++;
-            }else{
-                vote--;
-            }
+        int candidate = 0;
+        int cnt = 0;
+        for(int num : arr){
+            if(cnt == 0)candidate = num;
+            if(num == candidate) cnt++;
+            else cnt--;
         }
-        int cnt = 0 ; 
-        for(int x : arr){
-            if(x == candidate){
-                cnt++;
-            }
-            
+        cnt = 0;
+        for(int num : arr){
+            if(num == candidate) cnt++;
         }
-        if(cnt > arr.length/2){
-            return candidate;
-        }
+        if(cnt > arr.length/2) return candidate;
         return -1;
     }
 }
